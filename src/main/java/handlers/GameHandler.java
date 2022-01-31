@@ -7,14 +7,11 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GameHandler extends AbstractHandler{
     private final String END_LINE = "\n";
-    private HashMap<String,String> capitalsAndCountries;
+    public HashMap<String,String> capitalsAndCountries;
 
     public GameHandler(Bot bot) {
         super(bot);
@@ -28,7 +25,9 @@ public class GameHandler extends AbstractHandler{
         parser.parseCSVIntoMap("/home/nik/IdeaProjects/TelegramBot/src/main/resources/dataset3.csv");
         String operationResult = quizRandomizer(parser.getCapitalsOfTheWorldRus());
         bot.sendQueue.add(quizGenerator(chatId, operationResult));
+        capitalsAndCountries = parser.getCapitalsOfTheWorldRus();
 
+        System.out.println(capitalsAndCountries.containsKey("Словакия".trim().toLowerCase()));
         return "";
     }
 
@@ -47,7 +46,7 @@ public class GameHandler extends AbstractHandler{
         sendMessage.setChatId(chatID);
         sendMessage.enableMarkdown(true);
         StringBuilder question = new StringBuilder();
-        question.append("Какой город является столицей страны"+countryName.replace(']',' ')+"?").append(END_LINE);
+        question.append("Какой город является столицей страны "+countryName.replace(']',' ')+"?").append(END_LINE);
 
         sendMessage.setText(question.toString());
         return  sendMessage;

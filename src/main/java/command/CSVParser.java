@@ -18,16 +18,17 @@ public class CSVParser {
 
     public void parseCSVIntoMap(String filePath) throws IOException {
         File csvData = new File(filePath);
-        CSVReader reader = new CSVReader(new FileReader(csvData),',',' ','2');
+        CSVReader reader = new CSVReader(new FileReader(csvData),',','\0','\0');
         String[] nextLine;
         String[] tmp;
 
         while((nextLine = reader.readNext()) != null){
             if (nextLine != null){
                 tmp=Arrays.toString(nextLine).split(",");
-                capitalsOfTheWorldRus.put(tmp[0],tmp[1]);
+                tmp[0].trim().toLowerCase();
+                tmp[1].trim().toLowerCase();
+                this.capitalsOfTheWorldRus.put(tmp[1].replace(']', '\0').trim(),tmp[0].replace('[', '\0').trim());
             }
         }
-        System.out.println(capitalsOfTheWorldRus.toString());
     }
 }
