@@ -9,5 +9,6 @@ public enum Command {
     GAME_OVER,  // "/stop_game"
     SAY_SCORE,  // "/score"
     ID,         // вернет айдишник юзера
-    NOTIFY
+    NOTIFY,
+    STOP
 }

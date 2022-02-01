@@ -105,7 +105,10 @@ public class MessageReceiver implements Runnable {
                 NotifyHandler notifyHandler = new NotifyHandler(bot);
                 log.info("Handler for command[" + command.toString() + "] is: " + notifyHandler);
                 return notifyHandler;
-            //case GAME_OVER:
+            case STOP:
+                StopHandler stopHandler = new StopHandler(bot);
+                log.info("Handler for command[" + command.toString() + "] is: " + stopHandler);
+                return stopHandler;
             default:
                 log.info("Handler for command[" + command.toString() + "] not Set. Return DefaultHandler");
                 return new DefaultHandler(bot);

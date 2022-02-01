@@ -23604,3 +23604,56 @@ org.telegram.telegrambots.exceptions.TelegramApiRequestException: Error sending 
 	at service.MessageSender.send(MessageSender.java:48)
 	at service.MessageSender.run(MessageSender.java:25)
 	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-02-01 20:37:03,708[DEBUG][main            ][                         bot.Bot] - Bot name: CapitalsGameBot
+2022-02-01 20:37:03,709[DEBUG][main            ][                         bot.Bot] - Bot token: 5279100609:AAHVr20ji5W13c07rPHZG3s25IKdPQxLrtA
+2022-02-01 20:37:04,137[DEBUG][main            ][                         bot.Bot] - Bot token: 5279100609:AAHVr20ji5W13c07rPHZG3s25IKdPQxLrtA
+2022-02-01 20:37:04,138[DEBUG][main            ][                         bot.Bot] - Bot name: CapitalsGameBot
+2022-02-01 20:37:04,140[DEBUG][main            ][                         bot.Bot] - Bot name: CapitalsGameBot
+2022-02-01 20:37:04,141[INFO ][main            ][                         bot.Bot] - [STARTED] TelegramAPI. Bot Connected. Bot class: bot.Bot@4c398c80
+2022-02-01 20:37:04,143[INFO ][MsgSender       ][           service.MessageSender] - [STARTED] MsgSender. Bot class: bot.Bot@4c398c80
+2022-02-01 20:37:04,160[INFO ][MsgReceiver     ][         service.MessageReceiver] - [STARTED] MsgReceiver.  Bot class: bot.Bot@4c398c80
+2022-02-01 20:37:15,720[DEBUG][elegram Executor][                         bot.Bot] - Receive new Update. updateID: 232881968
+2022-02-01 20:37:16,167[INFO ][MsgReceiver     ][         service.MessageReceiver] - Handler for command[STOP] is: handlers.StopHandler@3cc55c38
+2022-02-01 20:37:17,149[DEBUG][MsgSender       ][                         bot.Bot] - Bot token: 5279100609:AAHVr20ji5W13c07rPHZG3s25IKdPQxLrtA
+2022-02-01 20:37:17,567[ERROR][MsgSender       ][           service.MessageSender] - Unable to deserialize response
+org.telegram.telegrambots.exceptions.TelegramApiRequestException: Unable to deserialize response
+	at org.telegram.telegrambots.api.methods.send.SendMessage.deserializeResponse(SendMessage.java:173)
+	at org.telegram.telegrambots.api.methods.send.SendMessage.deserializeResponse(SendMessage.java:24)
+	at org.telegram.telegrambots.bots.DefaultAbsSender.sendApiMethod(DefaultAbsSender.java:616)
+	at org.telegram.telegrambots.bots.AbsSender.execute(AbsSender.java:53)
+	at service.MessageSender.send(MessageSender.java:48)
+	at service.MessageSender.run(MessageSender.java:25)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: com.fasterxml.jackson.databind.JsonMappingException: Numeric value (5279100609) out of range of int
+ at [Source: {"ok":true,"result":{"message_id":912,"from":{"id":5279100609,"is_bot":true,"first_name":"CapitalsGameBot","username":"game_in_capitals_bot"},"chat":{"id":355107452,"first_name":"\u041d\u0438\u043a\u0438\u0442\u0430","last_name":"\u0422\u0435\u0440\u0435\u0445\u043e\u0432","username":"nikita_ter","type":"private"},"date":1643737037,"text":"\u0414\u043e \u0441\u043a\u043e\u0440\u043e\u0439 \u0432\u0441\u0442\u0440\u0435\u0447\u0438.\n\u041d\u0430\u0434\u0435\u044e\u0441\u044c \u0443\u0432\u0438\u0434\u0438\u043c\u0441\u044f \u0441\u043d\u043e\u0432\u0430!"}}; line: 1, column: 62]
+ at [Source: {"ok":true,"result":{"message_id":912,"from":{"id":5279100609,"is_bot":true,"first_name":"CapitalsGameBot","username":"game_in_capitals_bot"},"chat":{"id":355107452,"first_name":"\u041d\u0438\u043a\u0438\u0442\u0430","last_name":"\u0422\u0435\u0440\u0435\u0445\u043e\u0432","username":"nikita_ter","type":"private"},"date":1643737037,"text":"\u0414\u043e \u0441\u043a\u043e\u0440\u043e\u0439 \u0432\u0441\u0442\u0440\u0435\u0447\u0438.\n\u041d\u0430\u0434\u0435\u044e\u0441\u044c \u0443\u0432\u0438\u0434\u0438\u043c\u0441\u044f \u0441\u043d\u043e\u0432\u0430!"}}; line: 1, column: 52] (through reference chain: org.telegram.telegrambots.api.objects.replykeyboard.ApiResponse["result"]->org.telegram.telegrambots.api.objects.Message["from"]->org.telegram.telegrambots.api.objects.User["id"])
+	at com.fasterxml.jackson.databind.JsonMappingException.wrapWithPath(JsonMappingException.java:388)
+	at com.fasterxml.jackson.databind.JsonMappingException.wrapWithPath(JsonMappingException.java:348)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.wrapAndThrow(BeanDeserializerBase.java:1607)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.vanillaDeserialize(BeanDeserializer.java:278)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:140)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:504)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:108)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.vanillaDeserialize(BeanDeserializer.java:276)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:140)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:504)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:108)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.vanillaDeserialize(BeanDeserializer.java:276)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:140)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3798)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2861)
+	at org.telegram.telegrambots.api.methods.send.SendMessage.deserializeResponse(SendMessage.java:165)
+	... 6 more
+Caused by: com.fasterxml.jackson.core.JsonParseException: Numeric value (5279100609) out of range of int
+ at [Source: {"ok":true,"result":{"message_id":912,"from":{"id":5279100609,"is_bot":true,"first_name":"CapitalsGameBot","username":"game_in_capitals_bot"},"chat":{"id":355107452,"first_name":"\u041d\u0438\u043a\u0438\u0442\u0430","last_name":"\u0422\u0435\u0440\u0435\u0445\u043e\u0432","username":"nikita_ter","type":"private"},"date":1643737037,"text":"\u0414\u043e \u0441\u043a\u043e\u0440\u043e\u0439 \u0432\u0441\u0442\u0440\u0435\u0447\u0438.\n\u041d\u0430\u0434\u0435\u044e\u0441\u044c \u0443\u0432\u0438\u0434\u0438\u043c\u0441\u044f \u0441\u043d\u043e\u0432\u0430!"}}; line: 1, column: 62]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1702)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:558)
+	at com.fasterxml.jackson.core.base.ParserBase.convertNumberToInt(ParserBase.java:928)
+	at com.fasterxml.jackson.core.base.ParserBase._parseIntValue(ParserBase.java:866)
+	at com.fasterxml.jackson.core.base.ParserBase.getIntValue(ParserBase.java:694)
+	at com.fasterxml.jackson.databind.deser.std.NumberDeserializers$IntegerDeserializer.deserialize(NumberDeserializers.java:306)
+	at com.fasterxml.jackson.databind.deser.std.NumberDeserializers$IntegerDeserializer.deserialize(NumberDeserializers.java:286)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:504)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:108)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.vanillaDeserialize(BeanDeserializer.java:276)
+	... 18 more
