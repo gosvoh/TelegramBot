@@ -5,8 +5,6 @@ import command.ParsedCommand;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.api.objects.Update;
 
-import java.io.IOException;
-
 public class DefaultHandler  extends AbstractHandler {
     private static final Logger log = Logger.getLogger(DefaultHandler.class);
 

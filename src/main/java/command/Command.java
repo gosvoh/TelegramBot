@@ -1,7 +1,7 @@
 package command;
 
 public enum Command {
-    NONE,       //Команды нет
+    NONE,       //Команды нет - возможно это ответ
     NOT_FOR_ME, //Команда не для нашего бота
     START,      // "/start"
     HELP,       // "/help"

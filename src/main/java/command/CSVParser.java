@@ -8,12 +8,12 @@ import java.util.HashMap;
 import au.com.bytecode.opencsv.*;
 
 public class CSVParser {
-    private HashMap<String,String> capitalsOfTheWorldRus = new HashMap<String,String>();
+    private HashMap<String,String> dataMap = new HashMap<String,String>();
 
     public CSVParser(){}
 
-    public HashMap<String,String> getCapitalsOfTheWorldRus(){
-        return this.capitalsOfTheWorldRus;
+    public HashMap<String,String> getDataMap(){
+        return this.dataMap;
     }
 
     public void parseCSVIntoMap(String filePath) throws IOException {
@@ -27,7 +27,7 @@ public class CSVParser {
                 tmp=Arrays.toString(nextLine).split(",");
                 tmp[0].trim().toLowerCase();
                 tmp[1].trim().toLowerCase();
-                this.capitalsOfTheWorldRus.put(tmp[1].replace(']', '\0').trim(),tmp[0].replace('[', '\0').trim());
+                this.dataMap.put(tmp[1].replace(']', '\0').trim(),tmp[0].replace('[', '\0').trim());
             }
         }
     }

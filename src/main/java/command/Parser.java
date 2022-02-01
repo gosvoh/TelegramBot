@@ -33,6 +33,9 @@ public class Parser {
                 result.setText(commandAndText.getValue());
             }
 
+        }else {
+            result.setCommand(Command.NONE);
+            result.setText(commandAndText.getKey());
         }
         return result;
     }

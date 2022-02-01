@@ -7,8 +7,6 @@ import org.apache.log4j.Logger;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 
-import java.io.IOException;
-
 public class SystemHandler extends AbstractHandler {
     private static final Logger log = Logger.getLogger(SystemHandler.class);
     private final String END_LINE = "\n";
@@ -29,14 +27,11 @@ public class SystemHandler extends AbstractHandler {
                 bot.sendQueue.add(getMessageHelp(chatId));
                 break;
             case ID:
-                return "Your telegramId: "+update.getMessage().getFrom().getId();
+                return "Ваш telegramId: "+update.getMessage().getFrom().getId();
 
             case NONE:
-
             case GAME_OVER:
-
             case SAY_SCORE:
-
             case NOT_FOR_ME:
         }
         return "";
@@ -52,6 +47,7 @@ public class SystemHandler extends AbstractHandler {
         text.append("*Помощь*").append(END_LINE).append(END_LINE);
         text.append("[/start](/start) - выводит стартовое сообщение").append(END_LINE);
         text.append("[/help](/help) - показывает доступные команды").append(END_LINE);
+        text.append("[/start_game](/start_game) - начинает игру в столицы").append(END_LINE);
         text.append("[/id](/id) - показывает ваш ID в telegram ").append(END_LINE);
         text.append("/*notify* _time-in-sec_  - заглушить бота на время (в секундах)").append(END_LINE);
 
@@ -65,9 +61,9 @@ public class SystemHandler extends AbstractHandler {
         sendMessage.enableMarkdown(true);
         StringBuilder text = new StringBuilder();
         text.append("Привет. Я  *").append(bot.getBotUsername()).append("*").append(END_LINE);
-        text.append("Я создан Тереховым Никитой специально для Company AI").append(END_LINE);
-        text.append("Давай сыграем в игру - столицы").append(END_LINE);
-        text.append("Вы можете увидеть все команды написав боту [/help](/help)");
+        text.append("Я создан Тереховым Никитой в качестве тестового задания специально для Just AI").append(END_LINE);
+        text.append("Давай сыграем в игру - столицы?").append(END_LINE);
+        text.append("Ты можешь увидеть все команды написав боту [/help](/help)");
 
         sendMessage.setText(text.toString());
         return sendMessage;
