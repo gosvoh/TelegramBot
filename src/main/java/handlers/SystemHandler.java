@@ -48,8 +48,9 @@ public class SystemHandler extends AbstractHandler {
         text.append("[/start](/start) - выводит стартовое сообщение").append(END_LINE);
         text.append("[/help](/help) - показывает доступные команды").append(END_LINE);
         text.append("[/start_game](/start_game) - начинает игру в столицы").append(END_LINE);
+        text.append("[/stop](/stop) - Заканчивает работу").append(END_LINE);
         text.append("[/id](/id) - показывает ваш ID в telegram ").append(END_LINE);
-        text.append("/*notify* _time-in-sec_  - заглушить бота на время (в секундах)").append(END_LINE);
+        text.append("/*notify* (время в секундах)  - прислать уведомление через время").append(END_LINE);
 
         sendMessage.setText(text.toString());
         return sendMessage;
@@ -62,7 +63,7 @@ public class SystemHandler extends AbstractHandler {
         StringBuilder text = new StringBuilder();
         text.append("Привет. Я  *").append(bot.getBotUsername()).append("*").append(END_LINE);
         text.append("Я создан Тереховым Никитой в качестве тестового задания специально для Just AI").append(END_LINE);
-        text.append("Давай сыграем в игру - столицы?").append(END_LINE);
+        text.append("Бот умеет играть в игру - столицы? Чтобы начать играть введи [/start_game](/start_game)").append(END_LINE);
         text.append("Ты можешь увидеть все команды написав боту [/help](/help)");
 
         sendMessage.setText(text.toString());

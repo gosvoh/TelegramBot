@@ -15,13 +15,13 @@ public class GameHandler extends AbstractHandler{
     public HashMap<String,String> dataMap;
     private final CSVParser parser;
     String operationResultKey;
+    public HashMap<Long,String> answersUsers;
 
     public GameHandler(Bot bot) throws IOException {
         super(bot);
         parser = new CSVParser();
-        parser.parseCSVIntoMap("/home/nik/IdeaProjects/TelegramBot/src/main/resources/dataset3.csv");
-        operationResultKey = quizRandomizer(parser.getDataMap());
-
+        parser.parseCSVIntoMap("/home/nik/IdeaProjects/TelegramBot/src/main/resources/1-Lvl-eu.csv");
+        answersUsers = new HashMap<>();
         dataMap = parser.getDataMap();
     }
 
@@ -30,38 +30,55 @@ public class GameHandler extends AbstractHandler{
 
 
         if (parsedCommand.getCommand().equals(Command.START_GAME)) {
-            //operationResultKey = quizRandomizer(parser.getDataMap());
-            bot.sendQueue.add(getMessageStartGame(chatId));
-            bot.sendQueue.add(quizGenerator(chatId, operationResultKey));
+            operationResultKey = quizRandomizer(parser.getDataMap());
+            answersUsers.put(update.getMessage().getChatId(),operationResultKey);
+            bot.sendQueue.add(getMessageStartGame(update.getMessage().getChatId().toString()));
+            bot.sendQueue.add(quizGenerator(update.getMessage().getChatId(), answersUsers.get(update.getMessage().getChatId())));
             return "";
         }
 
-        SendMessage message = new SendMessage();
-        message.setChatId(chatId);
-
-        System.out.println(dataMap.containsKey(operationResultKey));
-        System.out.println("Верный ответ: "+dataMap.get(operationResultKey)+" - это значение по ключу ");
-
-        String str = dataMap.get(operationResultKey);
+        if(answersUsers.get(update.getMessage().getChatId())==null){
+            return "";
+        }
+        String str = dataMap.get(answersUsers.get(update.getMessage().getChatId()));
         str = str.trim().toUpperCase();
 
-        String parsedCommandText=parsedCommand.getText();
+        String parsedCommandText = parsedCommand.getText();
         parsedCommandText = parsedCommandText.trim().toUpperCase();
 
         if (parsedCommandText.equals(str)){
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId);
+            sendMessage.enableMarkdown(true);
+            StringBuilder answerCorrect = new StringBuilder();
+            answerCorrect.append("Правильный ответ!");
 
-            message.setText("Правильный ответ!");
+            sendMessage.setText(answerCorrect.toString());
+            bot.sendQueue.add(sendMessage);
 
-            bot.sendQueue.add(message);
             operationResultKey = quizRandomizer(parser.getDataMap());
-            bot.sendQueue.add(quizGenerator(chatId, operationResultKey));
+            answersUsers.put(update.getMessage().getChatId(), operationResultKey);
+            bot.sendQueue.add(quizGenerator(update.getMessage().getChatId(), answersUsers.get(update.getMessage().getChatId())));
 
             return "";
         } else {
-            message.setText("Неверный ответ, давай попробуем другой вопрос");
-            bot.sendQueue.add(message);
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId);
+            sendMessage.enableMarkdown(true);
+            StringBuilder answerBad = new StringBuilder();
+
+            String tmp = str.toLowerCase();
+            String correctAnswer = tmp.substring(0,1).toUpperCase()+tmp.substring(1);
+
+            answerBad.append("Неверный ответ."+" Столица страны "+ answersUsers.get(update.getMessage().getChatId()) + " является " +correctAnswer+". Давай попробуем другой вопрос");
+
+            sendMessage.setText(answerBad.toString());
+            bot.sendQueue.add(sendMessage);
+
             operationResultKey = quizRandomizer(parser.getDataMap());
-            bot.sendQueue.add(quizGenerator(chatId, operationResultKey));
+            answersUsers.put(update.getMessage().getChatId(),operationResultKey);
+            bot.sendQueue.add(quizGenerator(update.getMessage().getChatId(), answersUsers.get(update.getMessage().getChatId())));
+
             return "";
         }
     }
@@ -71,11 +88,10 @@ public class GameHandler extends AbstractHandler{
         Random generator = new Random();
         List<String> keys = new ArrayList<String>(map.keySet());
         String randomKey = keys.get(generator.nextInt(keys.size()));
-        //String value = map.get(randomKey);
         return randomKey;
     }
 
-    private SendMessage quizGenerator(String chatID,String countryName){
+    private SendMessage quizGenerator(Long chatID,String countryName){
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatID);
         sendMessage.enableMarkdown(true);
@@ -94,7 +110,7 @@ public class GameHandler extends AbstractHandler{
         text.append("Ты запустил игру в столицы").append(END_LINE);
         text.append("Это простая игра, как в города,").append(END_LINE);
         text.append("только я называю страну - а ты столицу этой страны").append(END_LINE);
-        //text.append("Игру можно завершить в любой момент, написав [/stop_game](/stop_game)").append(END_LINE);
+        text.append("Игру можно завершить в любой момент, написав [/stop](/stop)").append(END_LINE);
         //text.append("Для того, чтобы просмотреть сколько правильных столиц ты назвал введи \n [/score](/score)");
 
         sendMessage.setText(text.toString());
