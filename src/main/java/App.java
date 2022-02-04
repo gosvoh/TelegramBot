@@ -13,7 +13,7 @@ public class App {
 
     public static void main(String[] args) throws TelegramApiException {
         ApiContextInitializer.init();
-        Bot testBot = new Bot("CapitalsGameBot","5279100609:AAHVr20ji5W13c07rPHZG3s25IKdPQxLrtA");
+        Bot testBot = new Bot("BotWorldWide","5279100609:AAHVr20ji5W13c07rPHZG3s25IKdPQxLrtA");
 
         MessageReceiver messageReceiver = new MessageReceiver(testBot);
         MessageSender messageSender = new MessageSender(testBot);
