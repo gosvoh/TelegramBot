@@ -1,6 +1,4 @@
 # TelegramBot
-Простой тг бот, написанный на Java при помощи telegram api
+Гайд по которому я писал этого бота -> https://habr.com/ru/post/481354/
 
-Как перетащить себе на комп?
-1) В гитхабе прожмите кнопку "fork" и затем у себя склонируйте проект либо через IDE либо так: git clone https://github.com/Terekhov-Nikita/TelegramBot.git
-2) Ветка "master" - трогать не нужно. Делайте git checkout englishLanguageEdition сразу.
+Ветку "master" - трогать не нужно. Делайте git checkout englishLanguageEdition и дальше в нее же пулл реквест.
