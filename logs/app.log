@@ -1,0 +1,4 @@
+[INFO ] 2022-03-17 11:57:47 E.Bot [main] ExEdBot.Bot started
+[INFO ] 2022-03-17 11:57:47 E.Bot [main] ExEdBot.Bot registered
+[DEBUG] 2022-03-17 11:57:56 E.C.ServiceCommand [gosvoh_bot Telegram Executor] Пользователь gosvoh. Начато выполнение команды help
+[DEBUG] 2022-03-17 11:57:57 E.C.ServiceCommand [gosvoh_bot Telegram Executor] Пользователь gosvoh. Завершено выполнение команды help

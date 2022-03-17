@@ -1,36 +1,20 @@
-import bot.Bot;
-import org.apache.log4j.Logger;
-import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
-import service.MessageReceiver;
-import service.MessageSender;
+import ExEdBot.Bot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
 
 public class App {
-    private static final Logger log = Logger.getLogger(App.class);
-    private static final int PRIORITY_FOR_SENDER = 1;
-    private static final int PRIORITY_FOR_RECEIVER = 3;
-    private static final String BOT_ADMIN = "321644283";
+    private static final Logger log = LogManager.getLogger();
 
-    public static void main(String[] args) throws TelegramApiException {
-        ApiContextInitializer.init();
-        Bot testBot = new Bot("BotWorldWide","5279100609:AAHVr20ji5W13c07rPHZG3s25IKdPQxLrtA");
-
-        MessageReceiver messageReceiver = new MessageReceiver(testBot);
-        MessageSender messageSender = new MessageSender(testBot);
-
-        testBot.botConnect();
-
-        Thread receiver = new Thread(messageReceiver); //Работа до конца основного потока
-        receiver.setDaemon(true);
-        receiver.setName("MsgReceiver");
-        receiver.setPriority(PRIORITY_FOR_RECEIVER);
-        receiver.start();
-
-        Thread sender = new Thread(messageSender);
-        sender.setDaemon(true);
-        sender.setName("MsgSender");
-        sender.setPriority(PRIORITY_FOR_SENDER);
-        sender.start();
-
+    public static void main(String[] args) {
+        try {
+            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+            telegramBotsApi.registerBot(new Bot());
+        } catch (TelegramApiException e) {
+            log.error(e);
+        }
     }
 }
