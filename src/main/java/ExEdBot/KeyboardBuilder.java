@@ -14,10 +14,11 @@ public class KeyboardBuilder extends ReplyKeyboardMarkup {
 
     private static List<KeyboardRow> buildKeyboardRows(Commands[] commands) {
         List<KeyboardRow> rows = new ArrayList<>();
-        for (int i = 0; i < commands.length / 2 + commands.length % 2; i++)
+        int numberOfColumns = 3;
+        for (int i = 0; i < commands.length / numberOfColumns + commands.length % numberOfColumns; i++)
             rows.add(new KeyboardRow());
         for (int i = 0; i < commands.length; i++)
-            rows.get(i % 2).add(commands[i].getCommandBtnName());
+            rows.get(i % numberOfColumns).add(commands[i].getCommandBtnName());
 
         return rows;
     }
