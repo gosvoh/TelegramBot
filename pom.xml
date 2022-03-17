@@ -69,6 +69,20 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.4</version>
+                <configuration>
+                    <appName>gosvoh-telegrambot</appName>
+                    <processTypes>
+                        java $JAVA_OPTS -cp target/classes:target/dependency/* App
+                    </processTypes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
