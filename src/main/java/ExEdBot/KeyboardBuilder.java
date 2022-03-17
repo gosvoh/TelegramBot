@@ -18,7 +18,7 @@ public class KeyboardBuilder extends ReplyKeyboardMarkup {
         for (int i = 0; i < commands.length / numberOfColumns + commands.length % numberOfColumns; i++)
             rows.add(new KeyboardRow());
         for (int i = 0; i < commands.length; i++)
-            rows.get(i % numberOfColumns).add(commands[i].getCommandBtnName());
+            rows.get(i / numberOfColumns).add(commands[i].getCommandBtnName());
 
         return rows;
     }
